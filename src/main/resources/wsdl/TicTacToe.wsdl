@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- TicTacToe WSDL. -->
+
+<definitions name="WEB_TicTacToe"
+             targetNamespace="urn:WEB_TicTacToe"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="urn:WEB_TicTacToe"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <!-- Complex types -->
+
+    <types xmlns="http://schemas.xmlsoap.org/wsdl/">
+        <xsd:schema targetNamespace="urn:WEB_TicTacToe">
+
+            <xsd:element name="getTimeStamp">
+                <xsd:complexType />
+            </xsd:element>
+
+            <xsd:element name="getTimeStampReturn">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="getTimeStampResult" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="getHighScore">
+                <xsd:complexType />
+            </xsd:element>
+
+            <xsd:element name="getHighScoreReturn">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="getHighScoreResult" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="saveHighScore">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="highscore" type="xsd:string" nillable="false"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="saveHighScoreReturn">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="saveHighScoreResult" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="validateMove">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="boardState" type="xsd:string" nillable="false"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="validateMoveReturn">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="validateMoveResult" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+        </xsd:schema>
+    </types>
+
+    <!-- Messages to communicate with our TicTacToe class. -->
+
+    <message name="validateMoveRequest">
+        <part name="parameters" element="tns:validateMove"/>
+    </message>
+
+    <message name="validateMoveResponse">
+        <part name="parameters" element="tns:validateMoveReturn"/>
+    </message>
+
+    <message name="getTimeStampRequest">
+        <part name="parameters" element="tns:getTimeStamp"/>
+    </message>
+
+    <message name="getTimeStampResponse">
+        <part name="parameters" element="tns:getTimeStampReturn"/>
+    </message>
+
+    <message name="getHighScoreRequest">
+        <part name="parameters" element="tns:getHighScore"/>
+    </message>
+
+    <message name="getHighScoreResponse">
+        <part name="parameters" element="tns:getHighScoreReturn"/>
+    </message>
+
+    <message name="saveHighScoreRequest">
+        <part name="parameters" element="tns:saveHighScore"/>
+    </message>
+
+    <message name="saveHighScoreResponse">
+        <part name="parameters" element="tns:saveHighScoreReturn"/>
+    </message>
+
+    <!-- Port used to communicate with our TicTacToe. -->
+
+    <portType name="WEB_TicTacToePort">
+
+        <operation name="validateMove">
+            <input message="tns:validateMoveRequest"/>
+            <output message="tns:validateMoveResponse"/>
+        </operation>
+
+        <operation name="getTimeStamp">
+            <input message="tns:getTimeStampRequest"/>
+            <output message="tns:getTimeStampResponse"/>
+        </operation>
+
+        <operation name="getHighScore">
+            <input message="tns:getHighScoreRequest"/>
+            <output message="tns:getHighScoreResponse"/>
+        </operation>
+
+        <operation name="saveHighScore">
+            <input message="tns:saveHighScoreRequest"/>
+            <output message="tns:saveHighScoreResponse"/>
+        </operation>
+
+    </portType>
+
+    <!-- Document, SOAP/Literal over HTTP -->
+
+    <binding name="WEB_TicTacToeBinding" type="tns:WEB_TicTacToePort">
+
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="validateMove">
+            <soap:operation soapAction="urn:WEB_TicTacToe#TicTacToe#validateMove" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="getTimeStamp">
+            <soap:operation soapAction="urn:WEB_TicTacToe#TicTacToe#getTimeStamp" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="getHighScore">
+            <soap:operation soapAction="urn:WEB_TicTacToe#TicTacToe#getHighScore" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="saveHighScore">
+            <soap:operation soapAction="urn:WEB_TicTacToe#TicTacToe#saveHighScore" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+    </binding>
+
+    <!-- Communication. -->
+
+    <service name="WEB_TicTacToe">
+        <documentation/>
+        <port name="WEB_TicTacToePort" binding="tns:WEB_TicTacToeBinding">
+            <soap:address location="http://titanic.ecci.ucr.ac.cr:80/~ea82019/TicTacToe/"/>
+        </port>
+    </service>
+
+</definitions>

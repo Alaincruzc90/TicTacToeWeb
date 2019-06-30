@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="body">
+    <div id="board">
+        <span class="tile" id="00">
+            <label class="display"></label>
+            <input th:attr="x=0,y=0" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="10">
+            <label class="display"></label>
+            <input th:attr="x=1,y=0" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="20">
+            <label class="display"></label>
+            <input th:attr="x=2,y=0" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="01">
+            <label class="display"></label>
+            <input th:attr="x=0,y=1" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="11">
+            <label class="display"></label>
+            <input th:attr="x=1,y=1" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="21">
+            <label class="display"></label>
+            <input th:attr="x=2,y=1" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="02">
+            <label class="display"></label>
+            <input th:attr="x=0,y=2" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="12">
+            <label class="display"></label>
+            <input th:attr="x=1,y=2" class="value-holder" th:value="0"/>
+        </span>
+        <span class="tile" id="22">
+            <label class="display"></label>
+            <input th:attr="x=2,y=2" class="value-holder" th:value="0"/>
+        </span>
+    </div>
+    <div id="end-container">
+        <div class="end">
+            <h3>Tie!</h3>
+            <a id="restart">Empezar</a>
+        </div>
+    </div>
+</th:block>
+</html>
